@@ -22,6 +22,15 @@
     }
 
     /// <summary>
+    /// Public view of another user: no password hash, salt or account balance
+    /// </summary>
+    public class UserSummary
+    {
+        public int UserId { get; set; }
+        public string Username { get; set; }
+    }
+
+    /// <summary>
     /// Model to accept login parameters
     /// </summary>
     public class LoginUser

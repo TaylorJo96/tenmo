@@ -20,9 +20,9 @@ namespace TenmoServer.Controllers
             this.userDao = dao;
         }
         [HttpGet()]
-       public ActionResult<List<User>> GetUsersToSendMoneyTo()
+       public ActionResult<List<UserSummary>> GetUsersToSendMoneyTo()
         {
-            List<User> allUsersExceptCurrent = new List<User>();
+            List<UserSummary> allUsersExceptCurrent = new List<UserSummary>();
             List<User> allusers = userDao.GetUsers();
             
             if (allusers == null)
@@ -35,7 +35,7 @@ namespace TenmoServer.Controllers
                 {
                     if(user.Username != User.Identity.Name)
                     {
-                        allUsersExceptCurrent.Add(user);
+                        allUsersExceptCurrent.Add(new UserSummary { UserId = user.UserId, Username = user.Username });
                     }
                 }
                 return allUsersExceptCurrent;
